@@ -9,7 +9,7 @@ public class HomePage extends JFrame implements ActionListener {
     // Component declarations
     private JPanel leftPanel, topPanel, centerPanel;
     private JButton btnApply, btnResidence, btnRoom;
-    private JButton btnButton5, btnButton6, btnButton7;
+    private JButton btnButton5, btnButton6, btnButton7, btnAccount;
     private JLabel lblWelcome, lblLogo;
     private JMenuBar menuBar;
     private JMenu menuFile, menuEdit;
@@ -36,7 +36,6 @@ public class HomePage extends JFrame implements ActionListener {
         topPanel.setBackground(new Color(209, 232, 255));
         
         centerPanel = new JPanel();
-        //centerPanel.setBackground(new Color(87, 132, 230));
 
         // Initialize buttons
         btnApply = new JButton("Apply");
@@ -57,13 +56,22 @@ public class HomePage extends JFrame implements ActionListener {
         btnButton7 = new JButton("Button7");
         btnButton7.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+        // Initialize account button with icon
+        ImageIcon accountIcon = new ImageIcon(getClass().getResource("")); // Replace with your path
+        // Scale the icon if needed
+        Image scaledAccountIcon = accountIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        btnAccount = new JButton(new ImageIcon(scaledAccountIcon));
+        btnAccount.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnAccount.setBorderPainted(false);
+        btnAccount.setContentAreaFilled(false);
+        btnAccount.setFocusPainted(false);
+
         // Initialize label
         lblWelcome = new JLabel("WELCOME");
         lblWelcome.setFont(new Font("SansSerif", Font.BOLD, 48));
 
-        // Initialize logo (replace "path/to/your/logo.png" with your actual logo path)
+        // Initialize logo
         ImageIcon logoIcon = new ImageIcon("/Users/keepingiteazy/NetBeansProjects/StudentsResidentApp/src/images/Resicon.jpeg");
-        // Scale the logo if needed
         Image scaledLogo = logoIcon.getImage().getScaledInstance(100, 80, Image.SCALE_SMOOTH);
         lblLogo = new JLabel(new ImageIcon(scaledLogo));
         lblLogo.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 0));
@@ -95,7 +103,7 @@ public class HomePage extends JFrame implements ActionListener {
         btnRoom.setPreferredSize(new Dimension(241, 120));
         leftPanel.add(btnRoom, gbc);
 
-        // Top panel layout - now with logo on left and buttons centered
+        // Top panel layout - now with logo on left, buttons centered, and account button on right
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 20));
         btnButton5.setPreferredSize(new Dimension(120, 60));
         btnButton6.setPreferredSize(new Dimension(120, 60));
@@ -103,10 +111,17 @@ public class HomePage extends JFrame implements ActionListener {
         buttonPanel.add(btnButton5);
         buttonPanel.add(btnButton6);
         buttonPanel.add(btnButton7);
-        buttonPanel.setOpaque(false); // Make transparent to show topPanel background
+        buttonPanel.setOpaque(false);
+        
+        // Create a panel for the account button to align it to the right
+        JPanel accountPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        accountPanel.setOpaque(false);
+        accountPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
+        accountPanel.add(btnAccount);
         
         topPanel.add(lblLogo, BorderLayout.WEST);
         topPanel.add(buttonPanel, BorderLayout.CENTER);
+        topPanel.add(accountPanel, BorderLayout.EAST);
 
         // Center panel layout
         centerPanel.setLayout(new GridBagLayout());
@@ -130,6 +145,7 @@ public class HomePage extends JFrame implements ActionListener {
         btnButton5.addActionListener(this);
         btnButton6.addActionListener(this);
         btnButton7.addActionListener(this);
+        btnAccount.addActionListener(this);
     }
 
     @Override
@@ -140,8 +156,9 @@ public class HomePage extends JFrame implements ActionListener {
             handleResidence();
         } else if (e.getSource() == btnRoom) {
             handleRoom();
+        } else if (e.getSource() == btnAccount) {
+            handleAccount();
         }
-        // Add handlers for other buttons as needed
     }
 
     private void handleApply() {
@@ -154,6 +171,11 @@ public class HomePage extends JFrame implements ActionListener {
 
     private void handleRoom() {
         // TODO: Add room button functionality
+    }
+
+    private void handleAccount() {
+        // TODO: Add account button functionality
+        JOptionPane.showMessageDialog(this, "Account button clicked!");
     }
 
     public static void main(String[] args) {

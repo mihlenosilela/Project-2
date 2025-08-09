@@ -83,8 +83,8 @@ public class LogIn extends JFrame implements ActionListener {
         btnCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnCancel.setPreferredSize(new Dimension(150, 50));
 
-        // Initialize logo (replace with your actual logo path)
-        ImageIcon logoIcon = new ImageIcon("path/to/your/logo.png");
+        
+        ImageIcon logoIcon = new ImageIcon("/Users/keepingiteazy/NetBeansProjects/StudentsResidentApp/src/images/Resicon.jpeg");
         Image scaledLogo = logoIcon.getImage().getScaledInstance(150, 80, Image.SCALE_SMOOTH);
         lblLogo = new JLabel(new ImageIcon(scaledLogo));
     }
