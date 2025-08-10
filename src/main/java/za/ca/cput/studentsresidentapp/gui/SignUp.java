@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class SignUp extends JFrame implements ActionListener {
-    // Component declarations
+   
     private JPanel leftPanel, rightPanel, topPanel;
     private JButton btnClose, btnSignUp, btnLogin, btnForgotPassword;
     private JTextField txtName, txtEmail, txtAnswer, txtAddress;

@@ -6,133 +6,117 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class HomePage extends JFrame implements ActionListener {
-    // Component declarations
+   
     private JPanel leftPanel, topPanel, centerPanel;
     private JButton btnApply, btnResidence, btnRoom;
     private JButton btnButton5, btnButton6, btnButton7, btnAccount;
-    private JLabel lblWelcome, lblLogo;
-    private JMenuBar menuBar;
-    private JMenu menuFile, menuEdit;
-
+    private JLabel lblWelcome, lblLogo, lblBackground;
+    
     public HomePage() {
         setTitle("Home Page");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1366, 768);
         setLayout(new BorderLayout());
 
-        initializeComponents();
+        createComponents();
         setupLayout();
         addActionListeners();
 
         setVisible(true);
     }
 
-    private void initializeComponents() {
-        // Initialize panels
-        leftPanel = new JPanel();
-        leftPanel.setBackground(new Color(87, 132, 230));
+    private void createComponents() {
         
-        topPanel = new JPanel(new BorderLayout());
-        topPanel.setBackground(new Color(209, 232, 255));
-        
-        centerPanel = new JPanel();
-
-        // Initialize buttons
         btnApply = new JButton("Apply");
-        btnApply.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
         btnResidence = new JButton("Residence");
-        btnResidence.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
         btnRoom = new JButton("Room");
-        btnRoom.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
         btnButton5 = new JButton("Button5");
-        btnButton5.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
         btnButton6 = new JButton("Button6");
-        btnButton6.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
         btnButton7 = new JButton("Button7");
+        
+       
+        btnApply.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnResidence.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnRoom.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnButton5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnButton6.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnButton7.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        // Initialize account button with icon
-        ImageIcon accountIcon = new ImageIcon(getClass().getResource("")); // Replace with your path
-        // Scale the icon if needed
-        Image scaledAccountIcon = accountIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnAccount = new JButton(new ImageIcon(scaledAccountIcon));
+       
+        btnAccount = new JButton();
+        btnAccount.setBackground(new Color(0, 51, 102));
+        btnAccount.setForeground(Color.WHITE);
         btnAccount.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnAccount.setBorderPainted(false);
-        btnAccount.setContentAreaFilled(false);
-        btnAccount.setFocusPainted(false);
+        btnAccount.setPreferredSize(new Dimension(120, 40));
+        
+        try {
+            ImageIcon accountIcon = new ImageIcon("/Users/keepingiteazy/NetBeansProjects/StudentsResidentApp/src/images/person_24dp_0000F5_FILL0_wght400_GRAD0_opsz24.png");
+            Image scaledIcon = accountIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            btnAccount.setIcon(new ImageIcon(scaledIcon));
+            btnAccount.setText("Account");
+            btnAccount.setHorizontalTextPosition(SwingConstants.RIGHT);
+            btnAccount.setIconTextGap(10);
+        } catch (Exception e) {
+            btnAccount.setText("Account"); 
+            System.out.println("Account icon not found, using text only");
+        }
 
-        // Initialize label
+       
         lblWelcome = new JLabel("WELCOME");
-        lblWelcome.setFont(new Font("SansSerif", Font.BOLD, 48));
-
-        // Initialize logo
-        ImageIcon logoIcon = new ImageIcon("/Users/keepingiteazy/NetBeansProjects/StudentsResidentApp/src/images/Resicon.jpeg");
-        Image scaledLogo = logoIcon.getImage().getScaledInstance(100, 80, Image.SCALE_SMOOTH);
-        lblLogo = new JLabel(new ImageIcon(scaledLogo));
-        lblLogo.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 0));
-
-        // Initialize menu
-        menuBar = new JMenuBar();
-        menuFile = new JMenu("File");
-        menuEdit = new JMenu("Edit");
+        lblWelcome.setFont(new Font("SansSerif", Font.BOLD, 64));
+        lblWelcome.setForeground(Color.WHITE);
+        lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+        
+       
+        try {
+            ImageIcon logoIcon = new ImageIcon("/Users/keepingiteazy/NetBeansProjects/StudentsResidentApp/src/images/Resicon.jpeg");
+            lblLogo = new JLabel(new ImageIcon(logoIcon.getImage().getScaledInstance(100, 80, Image.SCALE_SMOOTH)));
+            
+            ImageIcon bgIcon = new ImageIcon("/Users/keepingiteazy/NetBeansProjects/StudentsResidentApp/src/images/duskfall-crew-5PMQF1y1hrk-unsplash.jpg");
+            lblBackground = new JLabel(new ImageIcon(bgIcon.getImage().getScaledInstance(1366, 768, Image.SCALE_SMOOTH)));
+        } catch (Exception e) {
+            lblLogo = new JLabel("LOGO");
+            lblBackground = new JLabel();
+            lblBackground.setBackground(new Color(87, 132, 230));
+            lblBackground.setOpaque(true);
+        }
     }
 
     private void setupLayout() {
-        // Left panel layout
-        leftPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        btnApply.setPreferredSize(new Dimension(241, 120));
-        leftPanel.add(btnApply, gbc);
-        
-        gbc.gridy++;
-        btnResidence.setPreferredSize(new Dimension(241, 120));
-        leftPanel.add(btnResidence, gbc);
-        
-        gbc.gridy++;
-        btnRoom.setPreferredSize(new Dimension(241, 120));
-        leftPanel.add(btnRoom, gbc);
+       
+        leftPanel = new JPanel(new GridLayout(3, 1, 10, 10));
+        leftPanel.setBackground(new Color(87, 132, 230));
+        leftPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        leftPanel.add(btnApply);
+        leftPanel.add(btnResidence);
+        leftPanel.add(btnRoom);
 
-        // Top panel layout - now with logo on left, buttons centered, and account button on right
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 20));
-        btnButton5.setPreferredSize(new Dimension(120, 60));
-        btnButton6.setPreferredSize(new Dimension(120, 60));
-        btnButton7.setPreferredSize(new Dimension(120, 60));
-        buttonPanel.add(btnButton5);
-        buttonPanel.add(btnButton6);
-        buttonPanel.add(btnButton7);
-        buttonPanel.setOpaque(false);
+     
+        topPanel = new JPanel(new BorderLayout());
+        topPanel.setBackground(new Color(209, 232, 255));
         
-        // Create a panel for the account button to align it to the right
+        JPanel centerButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 20));
+        centerButtons.setOpaque(false);
+        centerButtons.add(btnButton5);
+        centerButtons.add(btnButton6);
+        centerButtons.add(btnButton7);
+        
         JPanel accountPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         accountPanel.setOpaque(false);
         accountPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
         accountPanel.add(btnAccount);
         
         topPanel.add(lblLogo, BorderLayout.WEST);
-        topPanel.add(buttonPanel, BorderLayout.CENTER);
+        topPanel.add(centerButtons, BorderLayout.CENTER);
         topPanel.add(accountPanel, BorderLayout.EAST);
 
-        // Center panel layout
-        centerPanel.setLayout(new GridBagLayout());
-        centerPanel.add(lblWelcome);
+        centerPanel = new JPanel(new BorderLayout());
+        centerPanel.setBackground(new Color(87, 132, 230));
+        lblBackground.setLayout(new GridBagLayout());
+        lblBackground.add(lblWelcome);
+        centerPanel.add(lblBackground, BorderLayout.CENTER);
 
-        // Menu bar
-        menuBar.add(menuFile);
-        menuBar.add(menuEdit);
-        setJMenuBar(menuBar);
-
-        // Add panels to frame
+   
         add(topPanel, BorderLayout.NORTH);
         add(leftPanel, BorderLayout.WEST);
         add(centerPanel, BorderLayout.CENTER);
@@ -150,32 +134,9 @@ public class HomePage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnApply) {
-            handleApply();
-        } else if (e.getSource() == btnResidence) {
-            handleResidence();
-        } else if (e.getSource() == btnRoom) {
-            handleRoom();
-        } else if (e.getSource() == btnAccount) {
-            handleAccount();
+        if (e.getSource() == btnAccount) {
+            JOptionPane.showMessageDialog(this, "Account button clicked!");
         }
-    }
-
-    private void handleApply() {
-        // TODO: Add apply button functionality
-    }
-
-    private void handleResidence() {
-        // TODO: Add residence button functionality
-    }
-
-    private void handleRoom() {
-        // TODO: Add room button functionality
-    }
-
-    private void handleAccount() {
-        // TODO: Add account button functionality
-        JOptionPane.showMessageDialog(this, "Account button clicked!");
     }
 
     public static void main(String[] args) {
