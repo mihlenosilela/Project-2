@@ -28,7 +28,7 @@ public class SignUp extends JFrame implements ActionListener {
     }
 
     private void initializeComponents() {
-        // Initialize panels
+        
         leftPanel = new JPanel();
         leftPanel.setBackground(new Color(87, 132, 230));
         
@@ -38,20 +38,20 @@ public class SignUp extends JFrame implements ActionListener {
         topPanel = new JPanel();
         topPanel.setBackground(new Color(87, 132, 230));
 
-        // Initialize buttons
+      
         btnClose = createStyledButton("Close", new Color(255, 102, 102));
         btnSignUp = createStyledButton("Sign-up", new Color(87, 132, 230));
         btnLogin = createStyledButton("Log-in", new Color(87, 132, 230));
         btnForgotPassword = createStyledButton("Forgot Password", new Color(87, 132, 230));
 
-        // Initialize text fields
+        
         txtName = createStyledTextField();
         txtEmail = createStyledTextField();
         txtPassword = createStyledPasswordField();
         txtAnswer = createStyledTextField();
         txtAddress = createStyledTextField();
 
-        // Initialize combo box
+       
         String[] questions = {
             "-Choose an option-",
             "What primary school did you attend?",
@@ -64,7 +64,7 @@ public class SignUp extends JFrame implements ActionListener {
         cmbSecurityQuestion.setBackground(Color.WHITE);
         cmbSecurityQuestion.setPreferredSize(new Dimension(300, 40));
 
-        // Initialize labels
+      
         lblTitle = new JLabel("SIGN UP");
         lblTitle.setFont(new Font("SansSerif", Font.BOLD, 48));
         lblTitle.setForeground(Color.WHITE);
@@ -76,7 +76,7 @@ public class SignUp extends JFrame implements ActionListener {
         lblAnswer = createStyledLabel("Answer:");
         lblAddress = createStyledLabel("Address:");
 
-        // Initialize logo (replace with your actual logo path)
+       
         ImageIcon logoIcon = new ImageIcon("/Users/keepingiteazy/NetBeansProjects/StudentsResidentApp/src/images/Resicon.jpeg");
         Image scaledLogo = logoIcon.getImage().getScaledInstance(150, 80, Image.SCALE_SMOOTH);
         lblLogo = new JLabel(new ImageIcon(scaledLogo));
@@ -125,22 +125,22 @@ public class SignUp extends JFrame implements ActionListener {
     }
 
     private void setupLayout() {
-        // Top panel with logo and title
+        
         topPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         topPanel.add(lblLogo);
         topPanel.add(Box.createHorizontalStrut(20));
         topPanel.add(lblTitle);
 
-        // Left panel (empty for visual balance)
+     
         leftPanel.setPreferredSize(new Dimension(300, 0));
 
-        // Right panel (signup form)
+        
         rightPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 15, 15, 15);
         gbc.anchor = GridBagConstraints.WEST;
 
-        // Name
+        
         gbc.gridx = 0;
         gbc.gridy = 0;
         rightPanel.add(lblName, gbc);
@@ -150,7 +150,7 @@ public class SignUp extends JFrame implements ActionListener {
         gbc.weightx = 1.0;
         rightPanel.add(txtName, gbc);
 
-        // Email
+      
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.fill = GridBagConstraints.NONE;
@@ -160,7 +160,7 @@ public class SignUp extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         rightPanel.add(txtEmail, gbc);
 
-        // Password
+        
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.fill = GridBagConstraints.NONE;
@@ -170,7 +170,7 @@ public class SignUp extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         rightPanel.add(txtPassword, gbc);
 
-        // Security Question
+        
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.fill = GridBagConstraints.NONE;
@@ -180,7 +180,7 @@ public class SignUp extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         rightPanel.add(cmbSecurityQuestion, gbc);
 
-        // Answer
+        
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.fill = GridBagConstraints.NONE;
@@ -190,7 +190,7 @@ public class SignUp extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         rightPanel.add(txtAnswer, gbc);
 
-        // Address
+        
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.fill = GridBagConstraints.NONE;
@@ -200,7 +200,7 @@ public class SignUp extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         rightPanel.add(txtAddress, gbc);
 
-        // Buttons
+        
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(209, 232, 255));
         buttonPanel.add(btnSignUp);
@@ -215,12 +215,12 @@ public class SignUp extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.CENTER;
         rightPanel.add(buttonPanel, gbc);
 
-        // Close button at bottom right
+        
         JPanel closePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         closePanel.setBackground(new Color(209, 232, 255));
         closePanel.add(btnClose);
 
-        // Add panels to frame
+        
         add(topPanel, BorderLayout.NORTH);
         add(leftPanel, BorderLayout.WEST);
         add(rightPanel, BorderLayout.CENTER);
@@ -248,7 +248,7 @@ public class SignUp extends JFrame implements ActionListener {
     }
 
     private void handleSignUp() {
-        // Validate and process sign-up
+       
         if (validateSignUp()) {
             JOptionPane.showMessageDialog(this, "Sign up successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -257,7 +257,7 @@ public class SignUp extends JFrame implements ActionListener {
     }
 
     private boolean validateSignUp() {
-        // Basic validation
+        
         if (txtName.getText().trim().isEmpty() ||
             txtEmail.getText().trim().isEmpty() ||
             new String(txtPassword.getPassword()).isEmpty() ||
@@ -269,7 +269,7 @@ public class SignUp extends JFrame implements ActionListener {
             return false;
         }
         
-        // Add more validation as needed
+      
         return true;
     }
 
